@@ -11,6 +11,10 @@
 #include "tree.h"
 #include "ops.h"
 
+extern int yylex(void);
+
+static void yyerror(char *s);
+
 /* The top level statement list is stored in the following variable. */
 struct stmt *statement;
 
@@ -213,7 +217,7 @@ opt_expr
 
 %%
 
-yyerror(char *s)
+static void yyerror(char *s)
 {
 	extern int lineno;
 

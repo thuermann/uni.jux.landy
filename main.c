@@ -5,6 +5,8 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #include "tree.h"
 #include "execute.h"
@@ -32,14 +34,23 @@ extern struct stmt *statement;
  *  to code error checking in commenting instead.
  */
 
+static void usage(void)
+{
+	fputs("Usage: sl [-l] file\n", stderr);
+	exit(1);
+}
+
 int main(int argc, char **argv)
 {
 	int token, lex_only = 0;
 
-	if (strcmp(argv[1], "-l") == 0) {
+	if (argc > 1 && strcmp(argv[1], "-l") == 0) {
 		lex_only = 1;
-		argv++;
+		argc--, argv++;
 	}
+	if (argc != 2)
+		usage();
+
 	if (!(yyin = fopen(argv[1], "r"))) {
 		perror(argv[1]);
 		exit(1);

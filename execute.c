@@ -5,6 +5,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "parse.tab.h"
 #include "ops.h"
@@ -39,6 +40,11 @@ void exc(struct stmt *s)
 		case EXPR:
 			eval(s->e1);
 			break;
+
+		default:
+			fprintf(stderr, "Internal interpreter bug at %s:%d\n",
+				__FILE__, __LINE__);
+			exit(1);
 		}
 	}
 }
@@ -98,5 +104,9 @@ static double eval(struct expr *e)
 		return e->id->value;
 	case NUMBER:
 		return e->value;
+	default:
+		fprintf(stderr, "Internal interpreter bug at %s:%d\n",
+			__FILE__, __LINE__);
+		exit(1);
 	}
 }
