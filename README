@@ -1,0 +1,10 @@
+This is an extremely simple interpreter written for a JuX[1] talk
+about Lex and Yacc on 17 Nov 1994.  To concentrate on usage of the
+parser and scanner generator tools, the interpreter only supports
+evaluation of statements and expressions, only one data type (double),
+no scopes, no function definitions, and does not perform full error
+checking.
+
+[1] JuX (Joviale Unterweisung in Unix) is a series of talks about Unix
+    and related topics, organized by Martin Neitzel at the Technical
+    University of Braunschweig.
