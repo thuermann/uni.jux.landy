@@ -49,7 +49,7 @@ struct stmt *statement;
  *  in the rules' actions (see below).
  */
 
-%token	IF ELSE FOR PRINT EXPR
+%token	IF ELSE DO WHILE FOR PRINT EXPR
 
 %token	<node>	IDENTIFIER
 %token	<value>	NUMBER
@@ -105,6 +105,14 @@ stmt	: '{' stmt_list '}'
 	| IF '(' expr ')' stmt ELSE stmt
 	{
 		$$ = mkstmt(IF, $3, $5, $7);
+	}
+	| DO stmt WHILE '(' expr ')' ';'
+	{
+		$$ = mkstmt(DO, $5, $2);
+	}
+	| WHILE '(' expr ')' stmt
+	{
+		$$ = mkstmt(WHILE, $3, $5);
 	}
 	| FOR '(' opt_expr ';' opt_expr ';' opt_expr ')' stmt
 	{

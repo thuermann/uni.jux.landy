@@ -39,6 +39,8 @@ cbody	\/*([^*/\n]\/*|\*)*
 
 if				return IF;
 else				return ELSE;
+do				return DO;
+while				return WHILE;
 for				return FOR;
 print				return PRINT;
 

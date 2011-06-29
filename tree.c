@@ -42,6 +42,15 @@ struct stmt *mkstmt(int type, ...)
 		s->s2 = va_arg(ap, struct stmt *);
 		break;
 
+		/* For a DO-WHILE or a WHILE statement read one
+		 * expression and one statement from the argument list.
+		 */
+	case DO:
+	case WHILE:
+		s->e1 = va_arg(ap, struct expr *);
+		s->s1 = va_arg(ap, struct stmt *);
+		break;
+
 		/* For a FOR statement read three expressions
 		 * and one statement from the argument list.
 		 */

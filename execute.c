@@ -29,6 +29,17 @@ void exc(const struct stmt *s)
 				exc(s->s2);
 			break;
 
+		case DO:
+			do
+				exc(s->s1);
+			while (eval(s->e1));
+			break;
+
+		case WHILE:
+			while (eval(s->e1))
+				exc(s->s1);
+			break;
+
 		case FOR:
 			for (eval(s->e1); eval(s->e2); eval(s->e3))
 				exc(s->s1);
