@@ -14,10 +14,10 @@
 #include "tree.h"
 #include "execute.h"
 
-static double eval(struct expr *e);
+static double eval(const struct expr *e);
 
 /* Execute the statement list pointed to by the argument s */
-void exc(struct stmt *s)
+void exc(const struct stmt *s)
 {
 	for (; s; s = s->next) {
 		switch (s->type) {
@@ -50,7 +50,7 @@ void exc(struct stmt *s)
 }
 
 /* Evaluate the expression pointed to by the argument e */
-static double eval(struct expr *e)
+static double eval(const struct expr *e)
 {
 	if (!e)
 		return 1;

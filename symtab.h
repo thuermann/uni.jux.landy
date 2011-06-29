@@ -7,6 +7,6 @@ struct node {
 	double      value;
 };
 
-struct node *lookup(char *key);
+struct node *lookup(const char *key);
 
 #endif

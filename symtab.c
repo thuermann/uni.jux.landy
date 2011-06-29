@@ -19,7 +19,7 @@ static struct node *root = NULL;
  * return a pointer to it.
  */
 
-struct node *lookup(char *key)
+struct node *lookup(const char *key)
 {
 	struct node *n;
 

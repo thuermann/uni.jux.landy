@@ -3,6 +3,6 @@
 
 #include "tree.h"
 
-void exc(struct stmt *s);
+void exc(const struct stmt *s);
 
 #endif
