@@ -126,6 +126,10 @@ stmt	: '{' stmt_list '}'
 	{
 		$$ = mkstmt(EXPR, $1);
 	}
+	| ';'
+	{
+		$$ = NULL;
+	}
 	;
 
 stmt_list
