@@ -93,6 +93,7 @@ struct expr *mkexpr(int type, ...)
 	case '-':
 	case '*':
 	case '/':
+	case '%':
 	case EQ:
 	case NE:
 	case '<':
@@ -108,6 +109,7 @@ struct expr *mkexpr(int type, ...)
 		/* For unary operators one expression is
 		 * read from the argument list.
 		 */
+	case '!':
 	case NEG:
 		e->arg1 = va_arg(ap, struct expr *);
 		break;
@@ -126,6 +128,7 @@ struct expr *mkexpr(int type, ...)
 	case ASSIGNMINUS:
 	case ASSIGNMULT:
 	case ASSIGNDIV:
+	case ASSIGNMOD:
 		e->id   = va_arg(ap, struct node *);
 		e->arg1 = va_arg(ap, struct expr *);
 		break;

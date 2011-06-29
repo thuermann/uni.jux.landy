@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "parse.tab.h"
 #include "ops.h"
@@ -66,6 +67,8 @@ static double eval(const struct expr *e)
 		return eval(e->arg1) * eval(e->arg2);
 	case '/':
 		return eval(e->arg1) / eval(e->arg2);
+	case '%':
+		return fmod(eval(e->arg1), eval(e->arg2));
 	case EQ:
 		return eval(e->arg1) == eval(e->arg2);
 	case NE:
@@ -82,6 +85,8 @@ static double eval(const struct expr *e)
 		return eval(e->arg1) && eval(e->arg2);
 	case LOGOR:
 		return eval(e->arg1) || eval(e->arg2);
+	case '!':
+		return !eval(e->arg1);
 	case POSTINC:
 		return e->id->value++;
 	case POSTDEC:
@@ -100,6 +105,8 @@ static double eval(const struct expr *e)
 		return e->id->value *= eval(e->arg1);
 	case ASSIGNDIV:
 		return e->id->value /= eval(e->arg1);
+	case ASSIGNMOD:
+		return e->id->value = fmod(e->id->value, eval(e->arg1));
 	case IDENTIFIER:
 		return e->id->value;
 	case NUMBER:

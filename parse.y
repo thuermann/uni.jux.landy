@@ -72,8 +72,8 @@ struct stmt *statement;
 %left	<op>	EQCOMPARE
 %left	<op>	ARITHCOMP
 %left		'+' '-'
-%left		'*' '/'
-%right	<op>	NEG INCDEC
+%left		'*' '/' '%'
+%right	<op>	'!' NEG INCDEC
 
 %%
 
@@ -159,6 +159,10 @@ expr	: '(' expr ')'
 	{
 		$$ = mkexpr('/', $1, $3);
 	}
+	| expr '%' expr
+	{
+		$$ = mkexpr('%', $1, $3);
+	}
 	| '-' expr %prec NEG
 	{
 		$$ = mkexpr(NEG, $2);
@@ -178,6 +182,10 @@ expr	: '(' expr ')'
 	| expr LOGOR expr
 	{
 		$$ = mkexpr(LOGOR, $1, $3);
+	}
+	| '!' expr
+	{
+		$$ = mkexpr('!', $2);
 	}
 	| IDENTIFIER INCDEC
 	{

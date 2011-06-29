@@ -19,6 +19,7 @@ enum {
 	ASSIGNMINUS,
 	ASSIGNMULT,
 	ASSIGNDIV,
+	ASSIGNMOD,
 };
 
 #endif

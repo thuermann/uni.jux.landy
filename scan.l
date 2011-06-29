@@ -67,10 +67,11 @@ print				return PRINT;
 "-="				yylval.op = ASSIGNMINUS; return ASGNOP;
 "*="				yylval.op = ASSIGNMULT;	 return ASGNOP;
 "/="				yylval.op = ASSIGNDIV;	 return ASGNOP;
+"%="				yylval.op = ASSIGNMOD;	 return ASGNOP;
 
 	/* some other operators */
 
-[-+*/]				return yytext[0];
+[-+*/%!]			return yytext[0];
 
 "=="				yylval.op = EQ;	 return EQCOMPARE;
 "!="				yylval.op = NE;	 return EQCOMPARE;

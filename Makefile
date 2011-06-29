@@ -4,7 +4,8 @@
 # 94/11/17 by Urs Thuermann for JuX.
 #
 
-OBJ = main.o tree.o execute.o symtab.o parse.tab.o scan.o
+LDLIBS = -lm
+OBJ    = main.o tree.o execute.o symtab.o parse.tab.o scan.o
 
 sl: $(OBJ)
 	$(CC) $(LDFLAGS) -o $@ $(OBJ) $(LDLIBS)
